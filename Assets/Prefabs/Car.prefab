@@ -204,7 +204,7 @@ MonoBehaviour:
     rightWheel: {fileID: 127537118407742812}
     motor: 1
     steering: 0
-  maxMotorTorque: 400
+  maxMotorTorque: 1200
   maxSteeringAngle: 30
 --- !u!1001 &26207774832172179
 PrefabInstance:
