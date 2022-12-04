@@ -6,19 +6,34 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     public List<AxleInfo> axleInfos; // 关于每个轴的信息
-    public float maxMotorTorque; // 电机可对车轮施加的最大扭矩
-    public float maxSteeringAngle; // 车轮的最大转向角
+    public float maxMotorTorque = 400f; // 电机可对车轮施加的最大扭矩
+    public float maxSteeringAngle = 30f; // 车轮的最大转向角
+    public float brakeRatio = 2f;
+    public float maxSpeed = 80f;
+    public float speed
+    {
+        get
+        {
+            return rd.velocity.magnitude;
+        }
+    }
+
+    public float motor;
+    public float steering;
+    public float steeringRatio;
+
+    Rigidbody rd;
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        rd = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // 查找相应的可视车轮
@@ -38,11 +53,22 @@ public class CarController : MonoBehaviour
         visualWheel.transform.rotation = rotation;
     }
 
+    float SteeringRatio()
+    {
+        steeringRatio = 1f - (speed / maxSpeed);
+        if (steeringRatio < 0.2f)
+        {
+            return 0.2f;
+        }
+        return steeringRatio;
+    }
+
     public void FixedUpdate()
     {
-        float motor = maxMotorTorque * Input.GetAxis("Vertical");
-        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-
+        motor = maxMotorTorque * Input.GetAxis("Vertical");
+        steering = maxSteeringAngle * Input.GetAxis("Horizontal") * SteeringRatio();
+        bool brake = Input.GetKey(KeyCode.Space);
+        
         foreach (AxleInfo axleInfo in axleInfos)
         {
             if (axleInfo.steering)
@@ -50,13 +76,28 @@ public class CarController : MonoBehaviour
                 axleInfo.leftWheel.steerAngle = steering;
                 axleInfo.rightWheel.steerAngle = steering;
             }
+
+            if (brake)
+            {
+                axleInfo.leftWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
+                axleInfo.rightWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
+            }
+            else
+            {
+                axleInfo.leftWheel.wheelDampingRate = 0;
+                axleInfo.rightWheel.wheelDampingRate = 0;
+            }
+                   
+
             if (axleInfo.motor)
             {
+
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
             }
-            ApplyLocalPositionToVisuals(axleInfo.leftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+            
+        ApplyLocalPositionToVisuals(axleInfo.leftWheel);
+        ApplyLocalPositionToVisuals(axleInfo.rightWheel);
         }
     }
 }

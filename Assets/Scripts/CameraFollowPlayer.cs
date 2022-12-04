@@ -23,10 +23,21 @@ public class CameraFollowPlayer : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    public void Follow()
     {
         targetPosition = target.position + Vector3.up * Height - target.forward * Distance;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Speed * Time.deltaTime);
         transform.LookAt(target);
+    }
+
+    public void FollowImmediately()
+    {
+        transform.position = target.position + Vector3.up * Height - target.forward * Distance;
+        transform.LookAt(target);
+    }
+
+    void FixedUpdate()
+    {
+        Follow();
     }
 }
