@@ -12,7 +12,7 @@ public class speedbar : MonoBehaviour
     void Start()
     {
         speedBar = GetComponent<Image>();
-        speedbarCurrent = 0;
+        speedbarCurrent = 100;
         speedbarMax = 100;
 
     }
