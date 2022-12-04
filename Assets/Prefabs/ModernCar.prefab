@@ -526,8 +526,13 @@ MonoBehaviour:
     rightWheel: {fileID: 1057494946909100755}
     motor: 1
     steering: 0
-  maxMotorTorque: 500
-  maxSteeringAngle: 15
+  maxMotorTorque: 600
+  maxSteeringAngle: 30
+  brakeRatio: 1.5
+  maxSpeed: 80
+  motor: 0
+  steering: 0
+  steeringRatio: 0
 --- !u!1 &3962000127133956386
 GameObject:
   m_ObjectHideFlags: 0

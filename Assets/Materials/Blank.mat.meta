@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/GeeKay3D/First-Aid-Set/Documentation/Documentation_FirstAidKit.pdf.meta
+guid: 582dc0e02d9c434459c8f2bdc58d8d7a
+DefaultImporter:
+========
 guid: 32db9a4a81ca54afda4e11ec65dd4b16
 NativeFormatImporter:
+>>>>>>>> bcfd45a78c52c2f248a396c632007671b9f708c5:Assets/Materials/Blank.mat.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 
