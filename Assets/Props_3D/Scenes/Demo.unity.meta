@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Props_3D/Scenes/Demo.unity.meta
 guid: 7e49f883638e94e5582712fd5015c1a7
 DefaultImporter:
+========
+guid: 4b91c8f6477d44f729e3c73bb36c3552
+PrefabImporter:
+>>>>>>>> bcfd45a78c52c2f248a396c632007671b9f708c5:Assets/Prefabs/AirWall.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
