@@ -5,13 +5,15 @@ using UnityEngine;
 public class Upspeed : MonoBehaviour
 {
     public CarController car;
-    public static float time=2f;
+    public float time=2f;
     public bool IsCarFasting = false;
+    Rigidbody r;
     // Start is called before the first frame update
     void Start()
     {
         car = GameObject.FindGameObjectWithTag("Player").GetComponent<MonoBehaviour>() as CarController;
-        
+        r = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -22,16 +24,16 @@ public class Upspeed : MonoBehaviour
         {
             IsCarFasting = true;
             speedbar.speedbarCurrent = 0;
-            car.maxMotorTorque = car.maxMotorTorque + 500;
+            r.velocity = r.velocity + transform.forward * 10;
         }
         if (IsCarFasting == true && time > 0)
         {
             time = time - Time.deltaTime;
         }
-        if (time == 0)
+        if (time <= 0 && IsCarFasting==true)
         {
             IsCarFasting = false;
-            car.maxMotorTorque = car.maxMotorTorque - 400;
+            time = 2f;
         }
     }
 }

@@ -16,11 +16,18 @@ public class addspeedbar : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other)
-  
     {
-        speedbar.speedbarCurrent = speedbar.speedbarCurrent + 20;
-        CarSpeedBar.spbar = (float)speedbar.speedbarCurrent / (float)speedbar.speedbarMax;
-        Destroy(gameObject);
+        if (speedbar.speedbarCurrent + 20 <= speedbar.speedbarMax)
+        {
+            speedbar.speedbarCurrent = speedbar.speedbarCurrent + 20;
+            CarSpeedBar.spbar = (float)speedbar.speedbarCurrent / (float)speedbar.speedbarMax;
+            Destroy(gameObject);
+        }
+        else
+        {
+            speedbar.speedbarCurrent = speedbar.speedbarMax;
+            Destroy(gameObject);
+        }
     }
 
 }
