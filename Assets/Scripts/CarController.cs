@@ -23,17 +23,32 @@ public class CarController : MonoBehaviour
     public float steeringRatio;
 
     Rigidbody rd;
+    ParticleSystem[] particles;
+    float particleEmitTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         rd = GetComponent<Rigidbody>();
+        particles = GetComponentsInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        float v = Input.GetAxis("Vertical");
+        if (v != 0)
+        {
+            particleEmitTime += Time.deltaTime;
+            if (particleEmitTime > 0.1f)
+            {
+                foreach (ParticleSystem particle in particles)
+                {
+                    particle.Emit(1);
+                }
+                particleEmitTime = 0f;
+            }
+        }
     }
 
     // 查找相应的可视车轮
