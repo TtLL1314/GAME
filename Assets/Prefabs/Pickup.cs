@@ -1,13 +1,13 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
 
-    public float speed;
+    public float speed;*/
 
-    // Start is called before the first frame update
+    /*// Start is called before the first frame update
     void Start()
     {
         
@@ -28,9 +28,9 @@ public class Pickup : MonoBehaviour
 
         Rigidbody body = GetComponent<Rigidbody>();
         body.AddForce(movement * speed * Time.deltaTime);
-    }
+    }*/
 
-    void onTriggerEnter(Collider other)
+    /*void onTriggerEnter(Collider other)
     {
         other.gameObject.SetActive(false);
     }
@@ -41,6 +41,6 @@ public class Pickup : MonoBehaviour
         {
             other.gameObject.SetActive(false);
         }
-    }
+    }*/
 
-}
+/*}*/
