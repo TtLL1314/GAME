@@ -20,7 +20,6 @@ public class addspeedbar : MonoBehaviour
         if (speedbar.speedbarCurrent + 20 <= speedbar.speedbarMax)
         {
             speedbar.speedbarCurrent = speedbar.speedbarCurrent + 20;
-            CarSpeedBar.spbar = (float)speedbar.speedbarCurrent / (float)speedbar.speedbarMax;
             Destroy(gameObject);
         }
         else
