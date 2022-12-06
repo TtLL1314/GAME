@@ -44,6 +44,7 @@ public class PlayerLogPoint : MonoBehaviour
     private void Reset()
     {
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     void JumpBack()
