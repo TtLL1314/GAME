@@ -5,8 +5,9 @@ using UnityEngine;
 public class Upspeed : MonoBehaviour
 {
     public CarController car;
-    public float time=2f;
-    public bool IsCarFasting = false;
+    public float time = 0f;
+    public float ratio = 10f;
+
     Rigidbody r;
     // Start is called before the first frame update
     void Start()
@@ -22,18 +23,13 @@ public class Upspeed : MonoBehaviour
        
         if (Input.GetKey(KeyCode.LeftShift) && speedbar.speedbarCurrent == speedbar.speedbarMax)
         {
-            IsCarFasting = true;
             speedbar.speedbarCurrent = 0;
-            r.velocity = r.velocity + transform.forward * 10;
-        }
-        if (IsCarFasting == true && time > 0)
-        {
-            time = time - Time.deltaTime;
-        }
-        if (time <= 0 && IsCarFasting==true)
-        {
-            IsCarFasting = false;
             time = 2f;
+        }
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+            r.velocity = r.velocity + ratio * Time.deltaTime * transform.forward;
         }
     }
 }
