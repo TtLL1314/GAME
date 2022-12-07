@@ -21,16 +21,15 @@ public class CarController : MonoBehaviour
     public float motor;
     public float steering;
     public float steeringRatio;
+    public List<ParticleSystem> smoke;
 
     Rigidbody rd;
-    ParticleSystem[] particles;
     float particleEmitTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         rd = GetComponent<Rigidbody>();
-        particles = GetComponentsInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -42,7 +41,7 @@ public class CarController : MonoBehaviour
             particleEmitTime += Time.deltaTime;
             if (particleEmitTime > 0.1f)
             {
-                foreach (ParticleSystem particle in particles)
+                foreach (ParticleSystem particle in smoke)
                 {
                     particle.Emit(1);
                 }

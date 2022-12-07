@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Upcoins : MonoBehaviour
 {
-    //Text GoldNum;
 
-    //public Text coinsText;
     void OnTriggerEnter(Collider other)
     {
 
         PublicController.Instance.coins++;
-
+        Destroy(gameObject);
     }
 }

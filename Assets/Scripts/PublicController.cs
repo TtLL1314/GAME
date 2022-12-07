@@ -9,8 +9,10 @@ public class PublicController : MonoBehaviour
 {
     //属性值
     public int coins = 0;
+    public float time = 0;
 
     public Text coinText;
+    public Text timeText;
 
 
     //引用
@@ -49,10 +51,9 @@ public class PublicController : MonoBehaviour
         // }
         coinText.text = "Coins:"+coins.ToString();
         //playrTimeText.text = P
+        time += Time.deltaTime;
+        timeText.text = "Time: " + time.ToString("F2");
     }
-
-   
-
 
     // private void GameOver()
     // {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 890354618222443334}
   - component: {fileID: 1003854959604791754}
   - component: {fileID: 867784381808147389}
+  - component: {fileID: 3523598430465250668}
   m_Layer: 0
   m_Name: Tool_Nitrogen
   m_TagString: Pick
@@ -109,5 +110,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f2aa94e0e969e0488a0ca94eae0c568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3523598430465250668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868838121131730366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33beefe7f7cd489a8d37b1a4e5b87df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

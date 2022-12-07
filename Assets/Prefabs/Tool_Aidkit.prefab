@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 631206533416120203}
   - component: {fileID: 6604929435334300818}
   - component: {fileID: 89724010391824825}
+  - component: {fileID: 6539283933089737737}
   m_Layer: 0
   m_Name: Tool_Aidkit
   m_TagString: Pick
@@ -108,5 +109,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f2aa94e0e969e0488a0ca94eae0c568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6539283933089737737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224601913572350807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d834081aad5f44e58be7deded2d3f854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
