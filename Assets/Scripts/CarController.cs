@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public List<AxleInfo> axleInfos; // 关于每个轴的信息
+    public AxleInfo frontAxle;
+    public AxleInfo backAxle;
     public float maxMotorTorque = 400f; // 电机可对车轮施加的最大扭矩
     public float maxSteeringAngle = 30f; // 车轮的最大转向角
-    public float brakeRatio = 2f;
-    public float maxSpeed = 80f;
+    public float brakeTorque = 1000f;
+    public float maxSpeed = 200f;
     public float speed
     {
         get
@@ -19,8 +20,11 @@ public class CarController : MonoBehaviour
     }
 
     public float motor;
+    public float frontRpm;
+
     public float steering;
     public float steeringRatio;
+    public float minSteeringRatio = 0.1f;
     public List<ParticleSystem> smoke;
 
     Rigidbody rd;
@@ -69,10 +73,11 @@ public class CarController : MonoBehaviour
 
     float SteeringRatio()
     {
-        steeringRatio = 1f - (speed / maxSpeed);
-        if (steeringRatio < 0.2f)
+        frontRpm = (frontAxle.leftWheel.rpm + frontAxle.rightWheel.rpm) / 2;
+        steeringRatio = 1f - (frontRpm / maxSpeed);
+        if (steeringRatio < minSteeringRatio)
         {
-            return 0.2f;
+            return minSteeringRatio;
         }
         return steeringRatio;
     }
@@ -82,37 +87,38 @@ public class CarController : MonoBehaviour
         motor = maxMotorTorque * Input.GetAxis("Vertical");
         steering = maxSteeringAngle * Input.GetAxis("Horizontal") * SteeringRatio();
         bool brake = Input.GetKey(KeyCode.Space);
-        
-        foreach (AxleInfo axleInfo in axleInfos)
-        {
-            if (axleInfo.steering)
-            {
-                axleInfo.leftWheel.steerAngle = steering;
-                axleInfo.rightWheel.steerAngle = steering;
-            }
 
-            if (brake)
-            {
-                axleInfo.leftWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
-                axleInfo.rightWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
-            }
-            else
-            {
-                axleInfo.leftWheel.wheelDampingRate = 0;
-                axleInfo.rightWheel.wheelDampingRate = 0;
-            }
-                   
-
-            if (axleInfo.motor)
-            {
-
-                axleInfo.leftWheel.motorTorque = motor;
-                axleInfo.rightWheel.motorTorque = motor;
-            }
+        frontAxle.leftWheel.steerAngle = steering;
+        frontAxle.rightWheel.steerAngle = steering;
             
-        ApplyLocalPositionToVisuals(axleInfo.leftWheel);
-        ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+        if (brake)
+        {
+            //axleInfo.leftWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
+            //axleInfo.rightWheel.wheelDampingRate = maxMotorTorque * brakeRatio;
+            frontAxle.leftWheel.brakeTorque = brakeTorque;
+            frontAxle.rightWheel.brakeTorque = brakeTorque;
+            backAxle.leftWheel.brakeTorque = brakeTorque;
+            backAxle.rightWheel.brakeTorque = brakeTorque;
         }
+        else
+        {
+            //axleInfo.leftWheel.wheelDampingRate = 0;
+            //axleInfo.rightWheel.wheelDampingRate = 0;
+            frontAxle.leftWheel.brakeTorque = 0f;
+            frontAxle.rightWheel.brakeTorque = 0f;
+            backAxle.leftWheel.brakeTorque = 0f;
+            backAxle.rightWheel.brakeTorque = 0f;
+        }
+               
+
+        backAxle.leftWheel.motorTorque = motor;
+        backAxle.rightWheel.motorTorque = motor;
+            
+        ApplyLocalPositionToVisuals(frontAxle.leftWheel);
+        ApplyLocalPositionToVisuals(frontAxle.rightWheel);
+        ApplyLocalPositionToVisuals(backAxle.leftWheel);
+        ApplyLocalPositionToVisuals(backAxle.rightWheel);
+        
     }
 }
 
@@ -121,6 +127,4 @@ public class AxleInfo
 {
     public WheelCollider leftWheel;
     public WheelCollider rightWheel;
-    public bool motor; // 此车轮是否连接到电机？
-    public bool steering; // 此车轮是否施加转向角？
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Upspeed : MonoBehaviour
 {
     public CarController car;
+    public float effectTime = 5f;
     public float time = 0f;
     public float ratio = 10f;
     public List<ParticleSystem> fires;
@@ -30,7 +31,7 @@ public class Upspeed : MonoBehaviour
                 ps.Play();
                 isPlaying = true;
             }
-            time = 2f;
+            time = effectTime;
         }
         if (time > 0)
         {
