@@ -15,7 +15,7 @@ public class healthbar : MonoBehaviour
     {
         healthBar = GetComponent<Image>();
         Healthcurrent = HealthMax;
-        g.SetActive(false);
+
     }
 
     // Update is called once per frame

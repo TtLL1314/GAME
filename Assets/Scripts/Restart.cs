@@ -7,7 +7,7 @@ namespace Assets.Scripts
     {
         public void OnStartButtonClick()
         {
-   
+            Debug.Log("Sadsadsadsadsadsaadsa");
             SceneManager.LoadScene("SampleScene");
         }
 
